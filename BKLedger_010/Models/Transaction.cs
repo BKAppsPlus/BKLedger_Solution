@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BKLedger_MVC_023.Models
+namespace BKLedger_010.Models
 {
     public class Transaction
     {
