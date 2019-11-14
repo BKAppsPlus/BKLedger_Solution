@@ -33,5 +33,7 @@ namespace BKLedger_010.Data
             base.OnModelCreating(builder);
         }
 
+        public DbSet<BKLedger_010.Models.LedgerMember> LedgerMember { get; set; }
+
     }
 }
