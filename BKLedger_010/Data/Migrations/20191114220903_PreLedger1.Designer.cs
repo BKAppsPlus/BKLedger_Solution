@@ -4,56 +4,22 @@ using BKLedger_010.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BKLedger_010.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191114220903_PreLedger1")]
+    partial class PreLedger1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("BKLedger_010.Models.Ledger", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<string>("CreatedBy");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<DateTime>("Modified");
-
-                    b.Property<string>("ModifiedBy");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Ledgers");
-                });
-
-            modelBuilder.Entity("BKLedger_010.Models.LedgerMember", b =>
-                {
-                    b.Property<string>("UserId");
-
-                    b.Property<int>("LedgerId");
-
-                    b.HasKey("UserId", "LedgerId");
-
-                    b.HasIndex("LedgerId");
-
-                    b.ToTable("LedgerMember");
-                });
 
             modelBuilder.Entity("BKLedger_010.Models.Transaction", b =>
                 {
@@ -136,9 +102,6 @@ namespace BKLedger_010.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -178,8 +141,6 @@ namespace BKLedger_010.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -250,26 +211,6 @@ namespace BKLedger_010.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("BKLedger_010.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-                });
-
-            modelBuilder.Entity("BKLedger_010.Models.LedgerMember", b =>
-                {
-                    b.HasOne("BKLedger_010.Models.Ledger", "Ledger")
-                        .WithMany("LedgerMembers")
-                        .HasForeignKey("LedgerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("BKLedger_010.Models.ApplicationUser", "LedgerUser")
-                        .WithMany("LedgerMembers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

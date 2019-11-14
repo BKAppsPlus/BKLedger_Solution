@@ -13,6 +13,25 @@ namespace BKLedger_010.Data
             : base(options)
         {
         }
-        public DbSet<BKLedger_010.Models.Transaction> Transactions { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Ledger> Ledgers { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<LedgerMember>()
+                .HasKey(lm => new { lm.UserId, lm.LedgerId });
+            builder.Entity<LedgerMember>()
+                .HasOne(lm => lm.LedgerUser)
+                .WithMany(lm => lm.LedgerMembers)
+                .HasForeignKey(lm => lm.UserId);
+            builder.Entity<LedgerMember>()
+                .HasOne(lm => lm.Ledger)
+                .WithMany(lm => lm.LedgerMembers)
+                .HasForeignKey(lm => lm.LedgerId);
+
+
+            base.OnModelCreating(builder);
+        }
+
     }
 }
