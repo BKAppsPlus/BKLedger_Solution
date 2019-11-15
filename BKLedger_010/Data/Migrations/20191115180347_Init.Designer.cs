@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BKLedger_010.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191114220121_PreLedger")]
-    partial class PreLedger
+    [Migration("20191115180347_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,42 @@ namespace BKLedger_010.Data.Migrations
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("BKLedger_010.Models.Ledger", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<DateTime>("Modified");
+
+                    b.Property<string>("ModifiedBy");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ledgers");
+                });
+
+            modelBuilder.Entity("BKLedger_010.Models.LedgerMember", b =>
+                {
+                    b.Property<string>("UserId");
+
+                    b.Property<int>("LedgerId");
+
+                    b.HasKey("UserId", "LedgerId");
+
+                    b.HasIndex("LedgerId");
+
+                    b.ToTable("LedgerMember");
+                });
 
             modelBuilder.Entity("BKLedger_010.Models.Transaction", b =>
                 {
@@ -46,6 +82,36 @@ namespace BKLedger_010.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Transactions");
+                });
+
+            modelBuilder.Entity("BKLedger_010.Models.tst_Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tst_Company");
+                });
+
+            modelBuilder.Entity("BKLedger_010.Models.tst_EmployeeOfCompany", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("tst_EmployeeOfCompany");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -102,6 +168,9 @@ namespace BKLedger_010.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -141,6 +210,8 @@ namespace BKLedger_010.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -211,6 +282,34 @@ namespace BKLedger_010.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("BKLedger_010.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("BKLedger_010.Models.LedgerMember", b =>
+                {
+                    b.HasOne("BKLedger_010.Models.Ledger", "Ledger")
+                        .WithMany("LedgerMembers")
+                        .HasForeignKey("LedgerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("BKLedger_010.Models.ApplicationUser", "LedgerUser")
+                        .WithMany("LedgerMembers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BKLedger_010.Models.tst_EmployeeOfCompany", b =>
+                {
+                    b.HasOne("BKLedger_010.Models.tst_Company", "Company")
+                        .WithMany("Employees")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

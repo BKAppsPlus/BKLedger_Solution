@@ -82,6 +82,36 @@ namespace BKLedger_010.Data.Migrations
                     b.ToTable("Transactions");
                 });
 
+            modelBuilder.Entity("BKLedger_010.Models.tst_Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("tst_Company");
+                });
+
+            modelBuilder.Entity("BKLedger_010.Models.tst_EmployeeOfCompany", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("tst_EmployeeOfCompany");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -269,6 +299,14 @@ namespace BKLedger_010.Data.Migrations
                     b.HasOne("BKLedger_010.Models.ApplicationUser", "LedgerUser")
                         .WithMany("LedgerMembers")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BKLedger_010.Models.tst_EmployeeOfCompany", b =>
+                {
+                    b.HasOne("BKLedger_010.Models.tst_Company", "Company")
+                        .WithMany("Employees")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

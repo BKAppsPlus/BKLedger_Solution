@@ -29,11 +29,21 @@ namespace BKLedger_010.Data
                 .WithMany(lm => lm.LedgerMembers)
                 .HasForeignKey(lm => lm.LedgerId);
 
-
+            builder.Entity<tst_Company>()
+                .HasMany(c => c.Employees)
+                .WithOne(e => e.Company)
+                .IsRequired();
+            //or:
+            //builder.Entity<Employee>()
+            //    .HasOne(e => e.Company)
+            //    .WithMany(c => c.Employees);
             base.OnModelCreating(builder);
         }
 
         public DbSet<BKLedger_010.Models.LedgerMember> LedgerMember { get; set; }
+
+        public DbSet<BKLedger_010.Models.tst_Company> tst_Company { get; set; }
+        public DbSet<BKLedger_010.Models.tst_EmployeeOfCompany> tst_EmployeeOfCompany { get; set; }
 
     }
 }
