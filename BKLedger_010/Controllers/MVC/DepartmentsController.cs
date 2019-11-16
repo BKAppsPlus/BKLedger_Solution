@@ -34,7 +34,7 @@ namespace BKLedger_010.Controllers.MVC
                 return NotFound();
             }
 
-            string query = "SELECT * FROM Department WHERE DepartmentID = {0}";
+            string query = "SELECT * FROM Test_Department WHERE DepartmentID = {0}";
             var department = await _context.Departments
                 .FromSql(query, id)
                 .Include(d => d.Administrator)

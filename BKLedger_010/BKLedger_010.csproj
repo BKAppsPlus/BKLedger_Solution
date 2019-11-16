@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Controllers\API\" />
-    <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
 </Project>
