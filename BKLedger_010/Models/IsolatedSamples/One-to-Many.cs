@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BKLedger_010.Models
+namespace BKLedger_010.Models.IsolatedSamples
 {
-    public class tst_Company
+    public class O2M_Company
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<tst_EmployeeOfCompany> Employees { get; set; }
+        public ICollection<O2M_EmployeeOfCompany> Employees { get; set; }
     }
-    public class tst_EmployeeOfCompany
+    public class O2M_EmployeeOfCompany
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public tst_Company Company { get; set; }
+        public O2M_Company Company { get; set; }
     }
 }

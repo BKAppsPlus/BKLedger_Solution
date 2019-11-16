@@ -6,26 +6,24 @@ using System.Threading.Tasks;
 
 namespace BKLedger_010.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class Core_ApplicationUser : IdentityUser
     {
-        public ICollection<LedgerMember> LedgerMembers { get; set; }
+        public ICollection<Core_LedgerMember> LedgerMembers { get; set; }
     }
-    public class LedgerMember
+    public class Core_LedgerMember
     {
-        public string UserId { get; set; }
-        
-        public ApplicationUser LedgerUser { get; set; }
+        public string LedgerUserId { get; set; }
+        public Core_ApplicationUser LedgerUser { get; set; }
         public int LedgerId { get; set; }
-        public Ledger Ledger { get; set; }
+        public Core_Ledger Ledger { get; set; }
     }
 
-    public class Ledger
+    public class Core_Ledger
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
-
-        public virtual ICollection<LedgerMember> LedgerMembers { get; set; }
+        public virtual ICollection<Core_LedgerMember> LedgerMembers { get; set; }
 
         public bool IsActive { get; set; }
         public string CreatedBy { get; set; }

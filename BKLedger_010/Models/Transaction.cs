@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BKLedger_010.Models
 {
-    public class Transaction
+    public class Core_Transaction
     {
         /// <summary>  
         /// Gets or sets the identifier.  

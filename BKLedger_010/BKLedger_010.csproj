@@ -15,4 +15,11 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Controllers\API\" />
+    <Folder Include="Controllers\MVC\" />
+    <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
 </Project>
