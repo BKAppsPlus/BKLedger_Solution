@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using BKLedger_010.Models;
+using BKLedger_010.Models.IsolatedSamples;
 
 namespace BKLedger_010.Data
 {
@@ -26,6 +27,10 @@ namespace BKLedger_010.Data
         public DbSet<BKLedger_010.Models.Test.CourseAssignment> CourseAssignments { get; set; }
         public DbSet<BKLedger_010.Models.Test.Person> People { get; set; }
 
+
+        public DbSet<BKLedger_010.Models.IsolatedSamples.M2M_Course> M2M_Course { get; set; }
+        public DbSet<BKLedger_010.Models.IsolatedSamples.M2M_Student> M2M_Student { get; set; }
+        public DbSet<BKLedger_010.Models.IsolatedSamples.M2M_StudentCourse> M2M_StudentCourse { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -53,16 +58,16 @@ namespace BKLedger_010.Data
 
             ////Many to Many:
 
-            //builder.Entity<M2M_StudentCourse>()
-            //    .HasKey(sc => new { sc.CourseId, sc.StudentId });
-            //builder.Entity<M2M_StudentCourse>()
-            //    .HasOne(sc => sc.Student)
-            //    .WithMany(s => s.StudentCourses)
-            //    .HasForeignKey(sc => sc.StudentId);
-            //builder.Entity<M2M_StudentCourse>()
-            //    .HasOne(sc => sc.Course)
-            //    .WithMany(c => c.StudentCourses)
-            //    .HasForeignKey(sc => sc.CourseId);
+            builder.Entity<M2M_StudentCourse>()
+                .HasKey(sc => new { sc.CourseId, sc.StudentId });
+            builder.Entity<M2M_StudentCourse>()
+                .HasOne(sc => sc.Student)
+                .WithMany(s => s.StudentCourses)
+                .HasForeignKey(sc => sc.StudentId);
+            builder.Entity<M2M_StudentCourse>()
+                .HasOne(sc => sc.Course)
+                .WithMany(c => c.StudentCourses)
+                .HasForeignKey(sc => sc.CourseId);
 
             ////TEST MODEL:
             ////Teacher One to many Courses:

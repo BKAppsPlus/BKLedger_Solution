@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /BKLedger_010/Data/Migrations
+/BKLedger_010/Migrations
