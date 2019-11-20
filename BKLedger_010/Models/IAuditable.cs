@@ -8,19 +8,27 @@ namespace BKLedger_010.Models
 {
     public interface IAuditable
     {
-        //string Id { get; set; }
+        string Id { get; set; }
         string Name { get; set; }
         DateTime Modified { get; set; }
         DateTime Created { get; set; }
-        string ModifiedBy { get; set; }
-        string CreatedBy { get; set; }
+        string ModifiedById { get; set; }
+        Core_ApplicationUser ModifiedBy { get; set; }
+        string CreatedById { get; set; }
+        Core_ApplicationUser CreatedBy { get; set; }
 
     }
-
-    //[Column("StudentName")]
+    //[Key]
+    //[Column("<TABLE>Id")]
+    //public string Id { get; set; } = Guid.NewGuid().ToString();
+    //[Column("<TABLE>Name")]
     //public string Name { get; set; }
     //public DateTime Modified { get; set; }
     //public DateTime Created { get; set; }
-    //public string ModifiedBy { get; set; }
-    //public string CreatedBy { get; set; }
+    //public string ModifiedById { get; set; }
+    //[ForeignKey("ModifiedById")]
+    //public Core_ApplicationUser ModifiedBy { get; set; }
+    //public string CreatedById { get; set; }
+    //[ForeignKey("CreatedById")]
+    //public Core_ApplicationUser CreatedBy { get; set; }
 }

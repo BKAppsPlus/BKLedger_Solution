@@ -7,36 +7,64 @@ using System.Threading.Tasks;
 
 namespace BKLedger_010.Models.IsolatedSamples
 {
-    public class M2M_Student
+    public class M2M_Student : IAuditable
     {
-        [Key]
-        public string StudentID { get; set; }
-
-
         public virtual ICollection<M2M_StudentCourse> StudentCourses { get; set; }
 
-
+        [Key]
+        [Column("StudentId")]
+        public string Id { get; set; }
         [Column("StudentName")]
         public string Name { get; set; }
         public DateTime Modified { get; set; }
         public DateTime Created { get; set; }
-        public string ModifiedBy { get; set; }
-        public string CreatedBy { get; set; }
+        public string ModifiedById { get; set; }
+        [ForeignKey("ModifiedById")]
+        public Core_ApplicationUser ModifiedBy { get; set; }
+        public string CreatedById { get; set; }
+        [ForeignKey("CreatedById")]
+        public Core_ApplicationUser CreatedBy { get; set; }
     }
-    public class M2M_Course
+    public class M2M_Course : IAuditable
     {
-        [Key]
-        public string CourseId { get; set; }
-        public string CourseName { get; set; }
         public virtual ICollection<M2M_StudentCourse> StudentCourses { get; set; }
 
+        [Key]
+        [Column("CourseId")]
+        public string Id { get; set; }
+        [Column("CourseName")]
+        public string Name { get; set; }
+        public DateTime Modified { get; set; }
+        public DateTime Created { get; set; }
+        public string ModifiedById { get; set; }
+        [ForeignKey("ModifiedById")]
+        public Core_ApplicationUser ModifiedBy { get; set; }
+        public string CreatedById { get; set; }
+        [ForeignKey("CreatedById")]
+        public Core_ApplicationUser CreatedBy { get; set; }
+
     }
-    public class M2M_StudentCourse
+    public class M2M_StudentCourse : IAuditable
     {
         public string StudentId { get; set; }
         public M2M_Student Student { get; set; }
         public string CourseId { get; set; }
         public M2M_Course Course { get; set; }
+
+        [Key]
+        [Column("StudentCourseId")]
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public DateTime Modified { get; set; }
+        public DateTime Created { get; set; }
+        public string ModifiedById { get; set; }
+        [ForeignKey("ModifiedById")]
+        public Core_ApplicationUser ModifiedBy { get; set; }
+        public string CreatedById { get; set; }
+        [ForeignKey("CreatedById")]
+        public Core_ApplicationUser CreatedBy { get; set; }
+
+
     }
 
 }

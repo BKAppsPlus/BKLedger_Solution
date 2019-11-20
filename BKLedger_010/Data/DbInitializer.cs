@@ -181,57 +181,57 @@ namespace BKLedger_010.Data
             var enrollments = new Enrollment[]
             {
                 new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Alexander").ID,
-                    CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID,
+                    StudentId = students.Single(s => s.LastName == "Alexander").ID,
+                    CourseId = courses.Single(c => c.Title == "Chemistry" ).CourseID,
                     Grade = Grade.A
                 },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Alexander").ID,
-                    CourseID = courses.Single(c => c.Title == "Microeconomics" ).CourseID,
+                    StudentId = students.Single(s => s.LastName == "Alexander").ID,
+                    CourseId = courses.Single(c => c.Title == "Microeconomics" ).CourseID,
                     Grade = Grade.C
                     },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Alexander").ID,
-                    CourseID = courses.Single(c => c.Title == "Macroeconomics" ).CourseID,
+                    StudentId = students.Single(s => s.LastName == "Alexander").ID,
+                    CourseId = courses.Single(c => c.Title == "Macroeconomics" ).CourseID,
                     Grade = Grade.B
                     },
                     new Enrollment {
-                        StudentID = students.Single(s => s.LastName == "Alonso").ID,
-                    CourseID = courses.Single(c => c.Title == "Calculus" ).CourseID,
+                        StudentId = students.Single(s => s.LastName == "Alonso").ID,
+                    CourseId = courses.Single(c => c.Title == "Calculus" ).CourseID,
                     Grade = Grade.B
                     },
                     new Enrollment {
-                        StudentID = students.Single(s => s.LastName == "Alonso").ID,
-                    CourseID = courses.Single(c => c.Title == "Trigonometry" ).CourseID,
+                        StudentId = students.Single(s => s.LastName == "Alonso").ID,
+                    CourseId = courses.Single(c => c.Title == "Trigonometry" ).CourseID,
                     Grade = Grade.B
                     },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Alonso").ID,
-                    CourseID = courses.Single(c => c.Title == "Composition" ).CourseID,
+                    StudentId = students.Single(s => s.LastName == "Alonso").ID,
+                    CourseId = courses.Single(c => c.Title == "Composition" ).CourseID,
                     Grade = Grade.B
                     },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Anand").ID,
-                    CourseID = courses.Single(c => c.Title == "Chemistry" ).CourseID
+                    StudentId = students.Single(s => s.LastName == "Anand").ID,
+                    CourseId = courses.Single(c => c.Title == "Chemistry" ).CourseID
                     },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Anand").ID,
-                    CourseID = courses.Single(c => c.Title == "Microeconomics").CourseID,
+                    StudentId = students.Single(s => s.LastName == "Anand").ID,
+                    CourseId = courses.Single(c => c.Title == "Microeconomics").CourseID,
                     Grade = Grade.B
                     },
                 new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Barzdukas").ID,
-                    CourseID = courses.Single(c => c.Title == "Chemistry").CourseID,
+                    StudentId = students.Single(s => s.LastName == "Barzdukas").ID,
+                    CourseId = courses.Single(c => c.Title == "Chemistry").CourseID,
                     Grade = Grade.B
                     },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Li").ID,
-                    CourseID = courses.Single(c => c.Title == "Composition").CourseID,
+                    StudentId = students.Single(s => s.LastName == "Li").ID,
+                    CourseId = courses.Single(c => c.Title == "Composition").CourseID,
                     Grade = Grade.B
                     },
                     new Enrollment {
-                    StudentID = students.Single(s => s.LastName == "Justice").ID,
-                    CourseID = courses.Single(c => c.Title == "Literature").CourseID,
+                    StudentId = students.Single(s => s.LastName == "Justice").ID,
+                    CourseId = courses.Single(c => c.Title == "Literature").CourseID,
                     Grade = Grade.B
                     }
             };
@@ -240,8 +240,8 @@ namespace BKLedger_010.Data
             {
                 var enrollmentInDataBase = context.Enrollments.Where(
                     s =>
-                            s.Student.ID == e.StudentID &&
-                            s.Course.CourseID == e.CourseID).SingleOrDefault();
+                            s.Student.ID == e.StudentId &&
+                            s.Course.CourseID == e.CourseId).SingleOrDefault();
                 if (enrollmentInDataBase == null)
                 {
                     context.Enrollments.Add(e);

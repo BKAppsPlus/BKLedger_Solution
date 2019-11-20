@@ -1,46 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace BKLedger_010.Models
 {
-    public class Core_Transaction
+    public class Core_Transaction : IAuditable
     {
-        /// <summary>  
-        /// Gets or sets the identifier.  
-        /// </summary>  
-        /// <value>The identifier.</value>  
-        public int Id
-        { get; set; }
+        public string LedgerId { get; set; } = Guid.NewGuid().ToString();
+        [ForeignKey("LedgerId")]
+        public Core_Ledger Ledger { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string PayerID
-        { get; set; }
+        public string PayerID { get; set; }
+        [ForeignKey("PayerID")]
+        public Core_ApplicationUser Payer { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string PayeeID
-        { get; set; }
+        public string PayeeID { get; set; }
+        [ForeignKey("PayeeID")]
+        public Core_ApplicationUser Payee { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public float Amount
-        { get; set; }
+        public float Amount { get; set; }
 
-        public bool IsActive
-        { get; set; }
-        public string CreatedBy
-        { get; set; }
-        public DateTime Created
-        { get; set; }
-        public string ModifiedBy
-        { get; set; }
-        public DateTime Modified
-        { get; set; }
+        [Key]
+        [Column("TransactionId")]
+        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public string Name { get; set; }
+        public DateTime Modified { get; set; }
+        public DateTime Created { get; set; }
+        public string ModifiedById { get; set; }
+        [ForeignKey("ModifiedById")]
+        public Core_ApplicationUser ModifiedBy { get; set; }
+        public string CreatedById { get; set; }
+        [ForeignKey("CreatedById")]
+        public Core_ApplicationUser CreatedBy { get; set; }
     }
 }
