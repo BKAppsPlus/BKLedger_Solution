@@ -259,5 +259,6 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-/BKLedger_010/Data/Migrations
 /BKLedger_010/Migrations
+/BKLedger_020/Data/Migrations
+/BKLedger_020/Migrations

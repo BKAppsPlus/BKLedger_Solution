@@ -1,4 +1,4 @@
-﻿using BKLedger_010.Models.Core;
+﻿using BKLedger_010.Models.Core_10;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

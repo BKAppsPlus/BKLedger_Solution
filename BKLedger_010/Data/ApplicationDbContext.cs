@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using BKLedger_010.Models;
 using BKLedger_010.Models.IsolatedSamples;
 using BKLedger_010.Models.Test;
-using BKLedger_010.Models.Core;
+using BKLedger_010.Models.Core_10;
+using BKLedger_010.Models.Conventions;
 
 namespace BKLedger_010.Data
 {
@@ -15,10 +16,22 @@ namespace BKLedger_010.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
+
+        #region Conventions
+        public DbSet<conv1_OneClass> conv1_OneClass { get; set; }
+        public DbSet<conv1_ManyStudent> conv1_ManyStudent { get; set; }
+
+        public DbSet<conv2_OneClass> conv2_OneClass { get; set; }
+        public DbSet<conv2_ManyStudent> conv2_ManyStudent { get; set; }
+        public DbSet<conv3_OneClass> conv3_OneClass { get; set; }
+        public DbSet<conv3_ManyStudent> conv3_ManyStudent { get; set; }
+        public DbSet<conv4_OneClass> conv4_OneClass { get; set; }
+        public DbSet<conv4_ManyStudent> conv4_ManyStudent { get; set; }
+        #endregion
         #region Core
 
-        public DbSet<Core_Transaction> Core_Transactions { get; set; }
-        public DbSet<Core_Ledger> Core_Ledgers { get; set; }
+        //public DbSet<Core_Transaction> Core_Transactions { get; set; }
+        //public DbSet<Core_Ledger> Core_Ledgers { get; set; }
         //public DbSet<Core_LedgerMembership> Core_LedgerMemberships { get; set; }
         
         #endregion
@@ -49,19 +62,21 @@ namespace BKLedger_010.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            #region Core Model
+            #region Conventions
 
-            //Many to Many between 
-            //builder.Entity<Core_LedgerMembership>()
-            //    .HasKey(lm => new { lm.Id });
-            //builder.Entity<Core_LedgerMembership>()
-            //    .HasOne(lm => lm.LedgerUser)
-            //    .WithMany(lu => lu.LedgerMembers)
-            //    .HasForeignKey(lm => lm.LedgerUserId);
-            //builder.Entity<Core_LedgerMembership>()
-            //    .HasOne(lm => lm.Ledger)
-            //    .WithMany(l => l.LedgerMemberships)
-            //    .HasForeignKey(lm => lm.LedgerId);
+            builder.Entity<conv0mm_Class_X_Student>()
+                            .HasKey(cXs => new { cXs.PesonId, cXs.KelasIdee });
+            builder.Entity<conv0mm_Class_X_Student>()
+                .HasOne(cXs => cXs.Person)
+                .WithMany(p => p.ClassEnrollments)
+                .HasForeignKey(e => e.PesonId);
+            builder.Entity<conv0mm_Class_X_Student>()
+                .HasOne(cXs => cXs.Kelas)
+                .WithMany(k => k.StudentEnrollments)
+                .HasForeignKey(e => e.KelasIdee);
+
+            base.OnModelCreating(builder);
+
             #endregion
 
             #region M2m O2M MODEL

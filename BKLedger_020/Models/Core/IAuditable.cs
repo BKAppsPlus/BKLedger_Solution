@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BKLedger_010.Models.Core_10
+namespace BKLedger_010.Models.Core
 {
     public interface IAuditable
     {
