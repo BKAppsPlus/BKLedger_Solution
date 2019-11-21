@@ -28,13 +28,6 @@ namespace BKLedger_010.Data
         public DbSet<conv4_OneClass> conv4_OneClass { get; set; }
         public DbSet<conv4_ManyStudent> conv4_ManyStudent { get; set; }
         #endregion
-        #region Core
-
-        //public DbSet<Core_Transaction> Core_Transactions { get; set; }
-        //public DbSet<Core_Ledger> Core_Ledgers { get; set; }
-        //public DbSet<Core_LedgerMembership> Core_LedgerMemberships { get; set; }
-        
-        #endregion
 
         #region Test
 
@@ -59,13 +52,12 @@ namespace BKLedger_010.Data
         public DbSet<M2M_StudentCourse> M2M_StudentCourse { get; set; }
         #endregion
 
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             #region Conventions
 
             builder.Entity<conv0mm_Class_X_Student>()
-                            .HasKey(cXs => new { cXs.PesonId, cXs.KelasIdee });
+                .HasKey(cXs => new { cXs.PesonId, cXs.KelasIdee });
             builder.Entity<conv0mm_Class_X_Student>()
                 .HasOne(cXs => cXs.Person)
                 .WithMany(p => p.ClassEnrollments)
@@ -75,7 +67,6 @@ namespace BKLedger_010.Data
                 .WithMany(k => k.StudentEnrollments)
                 .HasForeignKey(e => e.KelasIdee);
 
-            base.OnModelCreating(builder);
 
             #endregion
 

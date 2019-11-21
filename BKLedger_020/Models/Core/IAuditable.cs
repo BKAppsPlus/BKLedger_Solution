@@ -12,11 +12,8 @@ namespace BKLedger_010.Models.Core
         string Name { get; set; }
         DateTime Modified { get; set; }
         DateTime Created { get; set; }
-
         Core_ApplicationUser ModifiedBy { get; set; }
-
         Core_ApplicationUser CreatedBy { get; set; }
-
     }
     //[Key]
     //[Column("<TABLE>Id")]

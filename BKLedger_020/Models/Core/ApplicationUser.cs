@@ -10,7 +10,7 @@ namespace BKLedger_010.Models.Core
     public class Core_ApplicationUser : IdentityUser
     {
         //[InverseProperty("LedgerMember")]
-        //public ICollection<Core_LedgerMembership> MemberLedgers { get; set; }
+        public ICollection<Core_LedgerMembership> AssignedLedgers { get; set; }
 
         [InverseProperty("Owner")]
         public ICollection<Core_Ledger> OwnedLedgers { get; set; }
