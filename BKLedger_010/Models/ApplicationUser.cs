@@ -9,28 +9,32 @@ namespace BKLedger_010.Models
 {
     public class Core_ApplicationUser : IdentityUser
     {
-        [InverseProperty("LedgerUser")]
-        public ICollection<Core_LedgerMembership> UserLedgers { get; set; }
+        [InverseProperty("LedgerMember")]
+        public ICollection<Core_LedgerMembership> MemberLedgers { get; set; }
+
+        [InverseProperty("Owner")]
+        public ICollection<Core_Ledger> OwnedLedgers { get; set; }
 
         [InverseProperty("Payee")]
         public ICollection<Core_Transaction> PayeeTransactions { get; set; }
         [InverseProperty("Payer")]
         public ICollection<Core_Transaction> PayerTransactions { get; set; }
 
-        [InverseProperty("CreatedBy")]
-        public ICollection<Core_Transaction> AuthoredTransactions { get; set; }
-        [InverseProperty("ModifiedBy")]
-        public ICollection<Core_Transaction> EditedTransactions { get; set; }
+        //[InverseProperty("CreatedBy")]
+        //public ICollection<Core_Transaction> AuthoredTransactions { get; set; }
+        //[InverseProperty("ModifiedBy")]
+        //public ICollection<Core_Transaction> EditedTransactions { get; set; }
 
-        [InverseProperty("CreatedBy")]
-        public ICollection<Core_LedgerMembership> AuthoredLedgerMemberships { get; set; }
-        [InverseProperty("ModifiedBy")]
-        public ICollection<Core_LedgerMembership> EditedLedgerMemberships { get; set; }
+        //[InverseProperty("CreatedBy")]
+        //public ICollection<Core_LedgerMembership> AuthoredLedgerMemberships { get; set; }
+        //[InverseProperty("ModifiedBy")]
+        //public ICollection<Core_LedgerMembership> EditedLedgerMemberships { get; set; }
 
-        [InverseProperty("CreatedBy")]
-        public ICollection<Core_Ledger> AuthoredLedgers { get; set; }
-        [InverseProperty("ModifiedBy")]
-        public ICollection<Core_Ledger> EditedLedgers { get; set; }
+        //[InverseProperty("CreatedBy")]
+        //public ICollection<Core_Ledger> AuthoredLedgers { get; set; }
+
+        //[InverseProperty("ModifiedBy")]
+        //public ICollection<Core_Ledger> EditedLedgers { get; set; }
 
         public ICollection<Core_Transaction> GetAllTransactions()
         {

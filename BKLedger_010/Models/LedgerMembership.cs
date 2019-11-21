@@ -10,9 +10,9 @@ namespace BKLedger_010.Models
 {
     public class Core_LedgerMembership : IAuditable
     {
-        public string LedgerUserId { get; set; }
-        [ForeignKey("LedgerUserId")]
-        public Core_ApplicationUser LedgerUser { get; set; }
+        public string LedgerMemberId { get; set; }
+        [ForeignKey("LedgerMemberId")]
+        public Core_ApplicationUser LedgerMember { get; set; }
 
         public string LedgerId { get; set; }
         [ForeignKey("LedgerId")]
@@ -23,17 +23,18 @@ namespace BKLedger_010.Models
         public string Id { get; set; } = Guid.NewGuid().ToString();
         [Column("LedgerMembershipName")]
         public string Name { get; set; }
-        public DateTime Modified { get; set; }
         public DateTime Created { get; set; }
+        public string CreatedById { get; set; }
+        [ForeignKey("CreatedById")]
+        public Core_ApplicationUser CreatedBy { get; set; }
 
+        public DateTime Modified { get; set; }
         public string ModifiedById { get; set; }
         [ForeignKey("ModifiedById")]
         public Core_ApplicationUser ModifiedBy { get; set; }
 
 
-        public string CreatedById { get; set; }
-        [ForeignKey("CreatedById")]
-        public Core_ApplicationUser CreatedBy { get; set; }
+
     }
 
 }
