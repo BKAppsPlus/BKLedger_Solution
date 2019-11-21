@@ -13,7 +13,7 @@ namespace WebApplication3.Models
         public string ClassName { get; set; }
         public string Section { get; set; }
 
-        public virtual ICollection<conv0mm_ManyStudent> AllStudentsInThisClass { get; set; }
+        public virtual ICollection<conv0mm_Class_X_Student> StudentEnrollments { get; set; }
     }
     public class conv0mm_ManyStudent
     {
@@ -21,7 +21,7 @@ namespace WebApplication3.Models
         public int DudeIdee { get; set; }
         public string StudentName { get; set; }
 
-        public virtual ICollection<conv0mm_ManyClass> AllClassesThisStudentHas { get; set; }
+        public virtual ICollection<conv0mm_Class_X_Student> ClassEnrollments { get; set; }
     }
     public class conv0mm_Class_X_Student
     {
