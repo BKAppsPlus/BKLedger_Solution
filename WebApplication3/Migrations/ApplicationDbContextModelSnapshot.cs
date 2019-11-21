@@ -184,6 +184,47 @@ namespace WebApplication3.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("WebApplication3.Models.conv0mm_Class_X_Student", b =>
+                {
+                    b.Property<int>("PesonId");
+
+                    b.Property<int>("KelasIdee");
+
+                    b.HasKey("PesonId", "KelasIdee");
+
+                    b.HasIndex("KelasIdee");
+
+                    b.ToTable("conv0mm_Class_X_Student");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.conv0mm_ManyClass", b =>
+                {
+                    b.Property<int>("ClassIdee")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClassName");
+
+                    b.Property<string>("Section");
+
+                    b.HasKey("ClassIdee");
+
+                    b.ToTable("conv0mm_ManyClass");
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.conv0mm_ManyStudent", b =>
+                {
+                    b.Property<int>("DudeIdee")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("StudentName");
+
+                    b.HasKey("DudeIdee");
+
+                    b.ToTable("conv0mm_ManyStudent");
+                });
+
             modelBuilder.Entity("WebApplication3.Models.conv1_ManyStudent", b =>
                 {
                     b.Property<int>("conv1_ManyStudentId")
@@ -354,6 +395,19 @@ namespace WebApplication3.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("WebApplication3.Models.conv0mm_Class_X_Student", b =>
+                {
+                    b.HasOne("WebApplication3.Models.conv0mm_ManyClass", "Kelas")
+                        .WithMany("StudentEnrollments")
+                        .HasForeignKey("KelasIdee")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WebApplication3.Models.conv0mm_ManyStudent", "Person")
+                        .WithMany("ClassEnrollments")
+                        .HasForeignKey("PesonId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

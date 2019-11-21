@@ -24,8 +24,8 @@ namespace WebApplication3.Data
         public DbSet<conv4_OneClass> conv4_OneClass { get; set; }
         public DbSet<conv4_ManyStudent> conv4_ManyStudent { get; set; }
 
-        public DbSet<conv0mm_ManyClass> conv0mm_ManyClass { get; set; }
-        public DbSet<conv0mm_ManyStudent> conv0mm_ManyStudent { get; set; }
+        //public DbSet<conv0mm_ManyClass> conv0mm_ManyClass { get; set; }
+        //public DbSet<conv0mm_ManyStudent> conv0mm_ManyStudent { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

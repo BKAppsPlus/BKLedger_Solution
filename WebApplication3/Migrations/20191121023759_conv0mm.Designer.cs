@@ -10,8 +10,8 @@ using WebApplication3.Data;
 namespace WebApplication3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191121022731_test0")]
-    partial class test0
+    [Migration("20191121023759_conv0mm")]
+    partial class conv0mm
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -403,12 +403,12 @@ namespace WebApplication3.Migrations
             modelBuilder.Entity("WebApplication3.Models.conv0mm_Class_X_Student", b =>
                 {
                     b.HasOne("WebApplication3.Models.conv0mm_ManyClass", "Kelas")
-                        .WithMany("Enrolments")
+                        .WithMany("StudentEnrollments")
                         .HasForeignKey("KelasIdee")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("WebApplication3.Models.conv0mm_ManyStudent", "Person")
-                        .WithMany("Enrolments")
+                        .WithMany("ClassEnrollments")
                         .HasForeignKey("PesonId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
