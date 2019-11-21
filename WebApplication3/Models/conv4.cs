@@ -14,10 +14,6 @@ namespace WebApplication3.Models
         public string Section { get; set; }
 
         public ICollection<conv4_ManyStudent> AllStudentsInThisClass { get; set; }
-
-
-
-
     }
     public class conv4_ManyStudent
     {
@@ -25,7 +21,7 @@ namespace WebApplication3.Models
         public int DudeIdee { get; set; }
         public string StudentName { get; set; }
 
-        public int ClassIdee { get; set; }
+        public int KelaslassIdee { get; set; }
         public conv4_OneClass ClassOfTheStudent { get; set; }
     }
 

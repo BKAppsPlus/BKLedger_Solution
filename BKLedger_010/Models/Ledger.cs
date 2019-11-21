@@ -16,7 +16,7 @@ namespace BKLedger_010.Models
         public virtual ICollection<Core_LedgerMembership> LedgerMemberships { get; set; }
         public virtual ICollection<Core_Transaction> Transactions { get; set; }
 
-        [Key]
+
         [Column("LedgerId")]
         public string Id { get; set; } = Guid.NewGuid().ToString();
         [Column("LedgerName")]
@@ -26,8 +26,7 @@ namespace BKLedger_010.Models
 
 
 
-        public string OwnerId { get; set; }
-        [ForeignKey("OwnerId")]
+
         public Core_ApplicationUser Owner { get; set; }
 
         public DateTime Created { get; set; }

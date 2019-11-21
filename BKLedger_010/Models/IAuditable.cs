@@ -12,9 +12,9 @@ namespace BKLedger_010.Models
         string Name { get; set; }
         DateTime Modified { get; set; }
         DateTime Created { get; set; }
-        string ModifiedById { get; set; }
+
         Core_ApplicationUser ModifiedBy { get; set; }
-        string CreatedById { get; set; }
+
         Core_ApplicationUser CreatedBy { get; set; }
 
     }
