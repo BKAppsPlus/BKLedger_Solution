@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using BKLedger_010.Models.Core;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,6 +30,28 @@ namespace BKLedger_020.Data
                 .HasOne(lm => lm.Ledger)
                 .WithMany(l => l.LedgerMembers)
                 .HasForeignKey(e => e.LedgerId);
+
+            builder.Entity<IdentityRole>()
+                .HasData(
+                new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() },
+                new IdentityRole { Name = "User", NormalizedName = "USER" }
+                );
+
+            Core_ApplicationUser appUser = new Core_ApplicationUser
+            {
+                UserName = "admin@BKLedgerApp.com",
+                Email = "admin@BKLedgerApp.com",
+                NormalizedEmail = "admin@BKLedgerApp.com".ToUpper(),
+                NormalizedUserName = "tester".ToUpper(),
+                TwoFactorEnabled = false,
+                EmailConfirmed = true,
+                PhoneNumber = "123456789",
+                PhoneNumberConfirmed = false
+            };
+            PasswordHasher<Core_ApplicationUser> ph = new PasswordHasher<Core_ApplicationUser>();
+            appUser.PasswordHash = ph.HashPassword(appUser, "Borazjan11!");
+            builder.Entity<Core_ApplicationUser>().HasData(appUser);
+
             base.OnModelCreating(builder);
         }
     }
