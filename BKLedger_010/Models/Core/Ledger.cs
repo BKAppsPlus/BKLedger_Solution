@@ -6,35 +6,31 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BKLedger_010.Models
+namespace BKLedger_010.Models.Core
 {
-    public class Core_LedgerMembership : IAuditable
+    public class Core_Ledger : IAuditable
     {
-        public string LedgerMemberId { get; set; }
-        [ForeignKey("LedgerMemberId")]
-        public Core_ApplicationUser LedgerMember { get; set; }
+        //[InverseProperty("Ledger")] 
+        //public virtual ICollection<Core_LedgerMembership> LedgerMemberships { get; set; }
+        public virtual ICollection<Core_Transaction> Transactions { get; set; }
 
-        public string LedgerId { get; set; }
-        [ForeignKey("LedgerId")]
-        public Core_Ledger Ledger { get; set; }
 
-        [Key]
-        [Column("LedgerMembershipId")]
+        [Column("LedgerId")]
         public string Id { get; set; } = Guid.NewGuid().ToString();
-        [Column("LedgerMembershipName")]
+        [Column("LedgerName")]
         public string Name { get; set; }
+
+        public Core_ApplicationUser Owner { get; set; }
+
         public DateTime Created { get; set; }
+        public DateTime Modified { get; set; }
+
         public string CreatedById { get; set; }
         [ForeignKey("CreatedById")]
         public Core_ApplicationUser CreatedBy { get; set; }
 
-        public DateTime Modified { get; set; }
         public string ModifiedById { get; set; }
         [ForeignKey("ModifiedById")]
         public Core_ApplicationUser ModifiedBy { get; set; }
-
-
-
     }
-
 }

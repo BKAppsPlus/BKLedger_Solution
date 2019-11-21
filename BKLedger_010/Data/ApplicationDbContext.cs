@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using BKLedger_010.Models;
 using BKLedger_010.Models.IsolatedSamples;
 using BKLedger_010.Models.Test;
+using BKLedger_010.Models.Core;
 
 namespace BKLedger_010.Data
 {
@@ -61,12 +62,6 @@ namespace BKLedger_010.Data
             //    .HasOne(lm => lm.Ledger)
             //    .WithMany(l => l.LedgerMemberships)
             //    .HasForeignKey(lm => lm.LedgerId);
-
-
-
-
-
-
             #endregion
 
             #region M2m O2M MODEL
@@ -128,10 +123,5 @@ namespace BKLedger_010.Data
 
             base.OnModelCreating(builder);
         }
-
-        
-
-
-
     }
 }

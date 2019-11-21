@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BKLedger_010.Models.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -51,20 +52,20 @@ namespace BKLedger_010.Models.IsolatedSamples
         public string CourseId { get; set; }
         public M2M_Course Course { get; set; }
 
-        [Key]
+
         [Column("StudentCourseId")]
         public string Id { get; set; }
         public string Name { get; set; }
         public DateTime Modified { get; set; }
         public DateTime Created { get; set; }
-        public string ModifiedById { get; set; }
-        [ForeignKey("ModifiedById")]
-        public Core_ApplicationUser ModifiedBy { get; set; }
+
         public string CreatedById { get; set; }
         [ForeignKey("CreatedById")]
         public Core_ApplicationUser CreatedBy { get; set; }
 
-
+        public string ModifiedById { get; set; }
+        [ForeignKey("ModifiedById")]
+        public Core_ApplicationUser ModifiedBy { get; set; }
     }
 
 }

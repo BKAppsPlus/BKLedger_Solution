@@ -5,11 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BKLedger_010.Models
+namespace BKLedger_010.Models.Core
 {
     public class Core_Transaction : IAuditable
     {
-        public string LedgerId { get; set; } = Guid.NewGuid().ToString();
+        public string LedgerId { get; set; }
         [ForeignKey("LedgerId")]
         public Core_Ledger Ledger { get; set; }
 
@@ -29,11 +29,13 @@ namespace BKLedger_010.Models
         public string Name { get; set; }
         public DateTime Modified { get; set; }
         public DateTime Created { get; set; }
-        public string ModifiedById { get; set; }
-        [ForeignKey("ModifiedById")]
-        public Core_ApplicationUser ModifiedBy { get; set; }
+
         public string CreatedById { get; set; }
         [ForeignKey("CreatedById")]
         public Core_ApplicationUser CreatedBy { get; set; }
+
+        public string ModifiedById { get; set; }
+        [ForeignKey("ModifiedById")]
+        public Core_ApplicationUser ModifiedBy { get; set; }
     }
 }
