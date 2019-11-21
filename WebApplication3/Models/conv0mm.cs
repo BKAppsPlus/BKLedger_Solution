@@ -12,7 +12,8 @@ namespace WebApplication3.Models
         public int ClassIdee { get; set; }
         public string ClassName { get; set; }
         public string Section { get; set; }
-
+        public conv0mm_ManyStudent Mobser { get; set; }
+        public conv0mm_ManyStudent TopDog { get; set; }
         public virtual ICollection<conv0mm_Class_X_Student> StudentEnrollments { get; set; }
     }
     public class conv0mm_ManyStudent
