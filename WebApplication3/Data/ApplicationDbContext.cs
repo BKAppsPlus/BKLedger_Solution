@@ -24,14 +24,25 @@ namespace WebApplication3.Data
         public DbSet<conv4_OneClass> conv4_OneClass { get; set; }
         public DbSet<conv4_ManyStudent> conv4_ManyStudent { get; set; }
 
-
-        public DbSet<conv0mm_ManyClass> conv0mm_ManyClass { get; set; }
-        public DbSet<conv0mm_ManyStudent> conv0mm_ManyStudent { get; set; }
+        //public DbSet<conv0mm_ManyClass> conv0mm_ManyClass { get; set; }
+        //public DbSet<conv0mm_ManyStudent> conv0mm_ManyStudent { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
-        {                       
+        {
+            //builder.Entity<conv0mm_Class_X_Student>()
+            //    .HasKey(cXs => new { cXs.PesonId, cXs.KelasIdee });
+            //builder.Entity<conv0mm_Class_X_Student>()
+            //    .HasOne(cXs => cXs.Person)
+            //    .WithMany(p => p.Enrolments)
+            //    .HasForeignKey(e => e.PesonId);
+            //builder.Entity<conv0mm_Class_X_Student>()
+            //    .HasOne(cXs => cXs.Kelas)
+            //    .WithMany(k => k.Enrolments)
+            //    .HasForeignKey(e => e.KelasIdee);
+
             base.OnModelCreating(builder);
         }
+
 
     }
 }
