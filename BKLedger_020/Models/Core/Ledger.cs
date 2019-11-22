@@ -10,6 +10,8 @@ namespace BKLedger_010.Models.Core
 {
     public class Core_Ledger : IAuditable
     {
+        public string OwnerId { get; set; }
+        [ForeignKey("OwnerId")]
         public Core_ApplicationUser Owner { get; set; }
         public string CreatedById { get; set; }
         public string ModifiedById { get; set; }
