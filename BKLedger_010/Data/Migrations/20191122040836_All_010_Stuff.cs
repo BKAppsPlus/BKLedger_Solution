@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BKLedger_010.Data.Migrations
 {
-    public partial class AllTestStuff : Migration
+    public partial class All_010_Stuff : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

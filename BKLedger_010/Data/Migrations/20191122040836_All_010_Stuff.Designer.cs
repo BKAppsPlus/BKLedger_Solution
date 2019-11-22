@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BKLedger_010.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191121175256_AllTestStuff")]
-    partial class AllTestStuff
+    [Migration("20191122040836_All_010_Stuff")]
+    partial class All_010_Stuff
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
